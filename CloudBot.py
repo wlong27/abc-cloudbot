@@ -60,7 +60,7 @@ st.warning("Use mock data to try this POC.")
 
 option = st.radio(
     "Use mock data?",
-    ("Yes", "No")
+    ("No", "Yes")
 )
     
 if option == "Yes":
