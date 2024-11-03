@@ -1,0 +1,14 @@
+[
+  {
+    "instanceId": "i-001",
+    "content": "Information on my EC2 instances in my AWS account. This instanceId=i-001 has the following security groups:GroupId=sg-001 with GroupName=default and with Rules={\"IngressRules\": [{\"FromPort\": null, \"ToPort\": null, \"Protocol\": \"-1\", \"CidrBlocks\": [\"0.0.0.0/0\"]}], \"EgressRules\": [{\"FromPort\": null, \"ToPort\": null, \"Protocol\": \"-1\", \"CidrBlocks\": [\"0.0.0.0/0\"]}]}, "
+  },
+  {
+    "instanceId": "i-002",
+    "content": "Information on my EC2 instances in my AWS account. This instanceId=i-002 has the following security groups:GroupId=sg-002 with GroupName=aws-group1 and with Rules={\"IngressRules\": [], \"EgressRules\": [{\"FromPort\": null, \"ToPort\": null, \"Protocol\": \"-1\", \"CidrBlocks\": [\"0.0.0.0/0\"]}]}, "
+  },
+  {
+    "instanceId": "i-003",
+    "content": "Information on my EC2 instances in my AWS account. This instanceId=i-003 has the following security groups:GroupId=sg-001 with GroupName=default and with Rules={\"IngressRules\": [{\"FromPort\": null, \"ToPort\": null, \"Protocol\": \"-1\", \"CidrBlocks\": [\"0.0.0.0/0\"]}], \"EgressRules\": [{\"FromPort\": null, \"ToPort\": null, \"Protocol\": \"-1\", \"CidrBlocks\": [\"0.0.0.0/0\"]}]}, "
+  }
+]

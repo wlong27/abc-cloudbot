@@ -1,0 +1,15 @@
+# Exclude the .env file
+.env
+
+# Exclude node_modules directory (if applicable)
+node_modules
+
+# Exclude Dockerfile and .dockerignore itself
+Dockerfile
+.dockerignore
+
+# Exclude other files or directories as needed
+*.log
+
+# Exclude python virtual env
+venv

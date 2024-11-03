@@ -1,7 +1,5 @@
 # CloudBot
 
-CloudBot - AI Champion Bootcamp submission.
-
 ## Run it locally
 
 ```bash
