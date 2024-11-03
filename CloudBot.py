@@ -14,7 +14,7 @@ import utilities.aws_helper as aws
 
 from agents.security_agent import crew
 
-load_dotenv()
+load_dotenv(override=True)
 
 password = os.getenv('PASSWORD')
 

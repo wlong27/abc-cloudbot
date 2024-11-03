@@ -1,9 +1,7 @@
-import os
 from dotenv import load_dotenv
-import requests
 from crewai import Agent, Task, Crew
 
-load_dotenv('.env')
+load_dotenv(override=True)
 
 from crewai_tools import (
   FileReadTool,

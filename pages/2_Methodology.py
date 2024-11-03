@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import utilities.password_check as pwd
 import os
 
-load_dotenv()
+load_dotenv(override=True)
 password = os.getenv('PASSWORD')
 
 if not pwd.check_password(password):  
@@ -26,7 +26,7 @@ with st.container(border=True):
 
 
 st.markdown("""            
-    #Agentic Flow    
+    # Agentic Flow    
             """)
 
 with st.container(border=True):
