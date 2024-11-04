@@ -1,3 +1,7 @@
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
 import streamlit as st
 import os
 from langchain.prompts import ChatPromptTemplate
@@ -13,9 +17,7 @@ import utilities.password_check as pwd
 import utilities.aws_helper as aws
 
 from agents.security_agent import crew
-__import__('pysqlite3')
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
 
 
 load_dotenv(override=True)
