@@ -5,10 +5,10 @@ bs4
 langchain
 langchain_openai
 langchain_huggingface
-langchain_experimental
 qdrant-client
 sentence-transformers
 transformers
 numpy
 tabulate
 crewai
+pysqlite3

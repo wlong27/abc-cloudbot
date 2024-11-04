@@ -7,7 +7,11 @@ CloudBot - AI Champion Bootcamp submission.
 ```bash
 virtualenv .venv
 source .venv/bin/activate
+
+pip install pip-tools
+pip-compile requirements.in
 pip install -r requirements.txt
+
 streamlit run CloudBot.py
 ```
 
