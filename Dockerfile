@@ -1,6 +1,9 @@
 # Use the official Python image from the Docker Hub
 FROM python:3.11-slim
 
+# Install GCC and other dependencies
+RUN apt-get update && apt-get install -y build-essential -y libsqlite3-dev
+
 # Set the working directory in the container
 WORKDIR /app
 

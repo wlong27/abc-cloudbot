@@ -44,9 +44,7 @@ attrs==24.2.0
 auth0-python==4.7.2
     # via crewai
 backoff==2.2.1
-    # via
-    #   opentelemetry-exporter-otlp-proto-http
-    #   posthog
+    # via posthog
 bcrypt==4.2.0
     # via chromadb
 beautifulsoup4==4.12.3
