@@ -639,8 +639,6 @@ pysbd==0.3.4
     # via embedchain
 pysocks==1.7.1
     # via urllib3
-pysqlite3==0.5.4
-    # via -r requirements.in
 pytest==8.3.3
     # via crewai-tools
 python-dateutil==2.9.0.post0
