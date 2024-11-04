@@ -11,3 +11,4 @@ transformers
 numpy
 tabulate
 crewai
+pysqlite3-binary
