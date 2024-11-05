@@ -1,6 +1,6 @@
-__import__('pysqlite3')
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+# __import__('pysqlite3')
+# import sys
+# sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 import streamlit as st
 import os
@@ -62,7 +62,7 @@ st.title("CloudBot")
 
 # Data retrieval
 st.subheader("Data Source")
-st.warning("Use mock data to try this POC.")
+st.info("Select 'Yes' to use mock data for a quick run of this POC.")
 
 option = st.radio(
     "Use mock data?",
@@ -96,8 +96,7 @@ if option == "Yes":
             with st.expander('List AWS resources in account.'):
                 df = pd.DataFrame(env_info)
                 st.dataframe(df)
-
-
+        
 else:
     # 1. Webscrap the EC2 controls from AWS Security hub
     main_url = 'https://docs.aws.amazon.com/securityhub/latest/userguide/ec2-controls.html'
@@ -143,14 +142,13 @@ else:
         instances_info = None
         buckets_info = None
 
-
 st.subheader("Agentic Recommendations")
 if st.button("Get Security Recommendations"):
     with st.spinner("Loading...please wait"):
         result = crew.kickoff()
         with st.expander("Show outputs"):
             st.write(f"{result}")    
-    
+
 st.subheader("Chat with Bot")
 
 # Store conversation history
