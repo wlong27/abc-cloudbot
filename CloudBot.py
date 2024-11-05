@@ -34,15 +34,12 @@ aws_secret_access_key = os.getenv('AWS_SECRET_ACCESS_KEY')
 aws_session_token = os.getenv('AWS_SESSION_TOKEN')
 
 
-crewai.initialize(api_key=openai_api_key)
-
-
 # side bar for key entries
 with st.sidebar:
     if openai_api_key is None:
         st.warning("Please add your OpenAI API key to continue.")
         openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
-        crewai.initialize(api_key=openai_api_key)
+        os.environ["OPENAI_API_KEY"] = openai_api_key
     
     if aws_access_key_id is None or aws_secret_access_key is None or aws_session_token is None:
         st.info("Add AWS credentials for AWS account.")
