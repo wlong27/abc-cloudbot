@@ -16,15 +16,13 @@ tool_read_environment = FileReadTool(file_path='./data/aws_environment.json')
 # Agent 1: Researcher
 security_architect = Agent(
     role="AWS Cloud Security Architect",
-    goal="Understand the audit report findings and propose remediation steps."
-         "Understand AWS security controls and the risks."
+    goal="Summarize AWS security controls and the risks."
          "Ensure that AWS cloud resources are secure by default.",
     tools=[tool_read_controls],
     verbose=False,
-    backstory="""\
-               As an AWS Cloud Security Architect, you are to understand the audit report findings and propose remediation steps.
-               Your prowess in understanding the AWS security controls and remediation steps is unmatched.
-               Your skills help identify security risks and gaps arising from misconfigured cloud resources."""
+    backstory="""As an AWS Cloud Security Architect, you are to recommend changes to the AWS resources and propose steps to secure them.
+               Your prowess in understanding the AWS security controls and cloud architecture is unmatched.
+               You are skilled in identifying security risks and gaps in AWS cloud resources."""
 )
 
 
@@ -33,45 +31,44 @@ im8_auditor = Agent(
     goal="Identify and flag out non-compliant AWS resources in accordance to IM8 clauses.",
     tools=[tool_read_cloudscape],
     verbose=False,
-    backstory=("""\
-               Equipped with analytical prowess, you analyze cloud reports and identify AWS resources that are non-compliant and flag them out for security remediation."""
+    backstory=("""Equipped with analytical prowess, you analyze reports and identify AWS resources that are non-compliant and flag them out for security remediation."""
     )
 )
 
 cloud_engineer = Agent(
     role="AWS Cloud Engineers",
-    goal="List down detailed steps to achieve the setup requirements in the target AWS environment.",
+    goal="List down detailed steps to change the AWS resources setup and configuration.",
     tools=[tool_read_environment],
     verbose=False,
-    backstory=("""\
-               Equipped with great operation and administration skills, you excel in configuring AWS resources given the setup requirements."""
+    backstory=("""Equipped with great operation and administration skills, you are good in configuring AWS resources given the compliance requirements."""
     )
 )
 
 security_task = Task(
     description="""/
-        Analyze the security controls obtained from the previous steps to extract key compliance and security mitigation required. 
-        Use the tools to gather content and identify and propose changes to the cloud resources.""",
+        Analyze the security controls obtained and summarize the security mitigation required. 
+        Use the tools to gather content and identify and propose changes to the AWS cloud resources.""",
     expected_output="A structured list of proposed changes to cloud resources configuration with security controls and mitigation steps.",
     agent=security_architect,
     async_execution=False
 )
 
 audit_report_task = Task(
-    description="""Compile a detailed cloud resources risk profile based on the current file. Utilize tools to extract and synthesize information from the file.""",
-    expected_output="A list of AWS cloud resources that is non-compliant according to IM8 clauses.",
+    description="""Compile an audit report listing the non-compliant AWS cloud resources according to IM8 clauses. 
+    Utilize tools to extract the non-compliant AWS resources name and information from the file.""",
+    expected_output="A security report in markdown listing all the non-compliant AWS cloud resources, their information and relevant mitigation steps.",
     agent=im8_auditor,
     async_execution=False
 )
 
 
 remediation_task = Task(
-    description="""\
-        Using the audit report and proposed changes obtained from previous tasks, propose changes to the cloud setup to mitigate all non-compliant areas. 
-        Make sure to propose practical steps in making the changes and don't make up any information. 
-        Update every non-compliant resource type.""",
-    expected_output=
-        "A concise remediation plan with clear detailed security risk mitigation steps for each non-compliant AWS cloud resource.",
+    description="""Using the audit report from previous tasks, create a remediation plan with changes to the AWS cloud resources.
+        The plan should address all the non-compliant AWS resources in the security report.
+        Each AWS resources must have mitigation steps to mitigate the security risk flagged in the audit report.
+        """,
+    expected_output="""A concise remediation plan with the necessary details and AWS resources listed in bullet points in markdown.
+    """,
     output_file="security_recommendations.md",
     context=[security_task, audit_report_task],
     agent=cloud_engineer
