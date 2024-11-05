@@ -20,7 +20,7 @@ security_architect = Agent(
          "Understand AWS security controls and the risks."
          "Ensure that AWS cloud resources are secure by default.",
     tools=[tool_read_controls],
-    verbose=True,
+    verbose=False,
     backstory="""\
                As an AWS Cloud Security Architect, you are to understand the audit report findings and propose remediation steps.
                Your prowess in understanding the AWS security controls and remediation steps is unmatched.
@@ -32,7 +32,7 @@ im8_auditor = Agent(
     role="IM8 Auditor",
     goal="Identify and flag out non-compliant AWS resources in accordance to IM8 clauses.",
     tools=[tool_read_cloudscape],
-    verbose=True,
+    verbose=False,
     backstory=("""\
                Equipped with analytical prowess, you analyze cloud reports and identify AWS resources that are non-compliant and flag them out for security remediation."""
     )
@@ -42,7 +42,7 @@ cloud_engineer = Agent(
     role="AWS Cloud Engineers",
     goal="List down detailed steps to achieve the setup requirements in the target AWS environment.",
     tools=[tool_read_environment],
-    verbose=True,
+    verbose=False,
     backstory=("""\
                Equipped with great operation and administration skills, you excel in configuring AWS resources given the setup requirements."""
     )
@@ -54,16 +54,14 @@ security_task = Task(
         Use the tools to gather content and identify and propose changes to the cloud resources.""",
     expected_output="A structured list of proposed changes to cloud resources configuration with security controls and mitigation steps.",
     agent=security_architect,
-    async_execution=True
+    async_execution=False
 )
 
 audit_report_task = Task(
-    description="""\
-        Compile a detailed cloud resources risk profile based on the current file.
-        Utilize tools to extract and synthesize information from the file.""",
-    expected_output="A comprehensive risk profile document that includes list of AWS cloud resources and their reported compliance status.",
+    description="""Compile a detailed cloud resources risk profile based on the current file. Utilize tools to extract and synthesize information from the file.""",
+    expected_output="A list of AWS cloud resources that is non-compliant according to IM8 clauses.",
     agent=im8_auditor,
-    async_execution=True
+    async_execution=False
 )
 
 
