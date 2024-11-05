@@ -96,7 +96,14 @@ if option == "Yes":
             with st.expander('List AWS resources in account.'):
                 df = pd.DataFrame(env_info)
                 st.dataframe(df)
-        
+
+    st.subheader("Agentic Recommendations")
+    if st.button("Get Security Recommendations"):
+        with st.spinner("Loading...please wait"):
+            result = crew.kickoff()
+            with st.expander("Show outputs"):
+                st.write(f"{result}")    
+            
 else:
     # 1. Webscrap the EC2 controls from AWS Security hub
     main_url = 'https://docs.aws.amazon.com/securityhub/latest/userguide/ec2-controls.html'
@@ -142,12 +149,7 @@ else:
         instances_info = None
         buckets_info = None
 
-st.subheader("Agentic Recommendations")
-if st.button("Get Security Recommendations"):
-    with st.spinner("Loading...please wait"):
-        result = crew.kickoff()
-        with st.expander("Show outputs"):
-            st.write(f"{result}")    
+
 
 st.subheader("Chat with Bot")
 
