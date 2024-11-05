@@ -28,13 +28,14 @@ password = os.getenv('PASSWORD')
 if not pwd.check_password(password):  
     st.stop()
 
-openai_api_key = os.getenv('OPENAI_API_KEY')
 aws_access_key_id = os.getenv('AWS_ACCESS_KEY_ID')
 aws_secret_access_key = os.getenv('AWS_SECRET_ACCESS_KEY')
 aws_session_token = os.getenv('AWS_SESSION_TOKEN')
 
 if 'OPENAI_API_KEY' in st.session_state:   
     os.environ["OPENAI_API_KEY"] =  st.session_state['OPENAI_API_KEY'] 
+
+openai_api_key = os.getenv('OPENAI_API_KEY')
 
 # side bar for key entries
 with st.sidebar:
